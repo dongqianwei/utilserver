@@ -1,4 +1,6 @@
 package UtilServ::Plugin::Base;
+use UtilServ::Config;
+use Carp;
 use strict;
 
 =head
@@ -39,4 +41,22 @@ sub page {
 </html>
 PG
 }
+
+=head
+
+    method: modset, modget
+    config modules
+
+=cut
+
+sub modset {
+    croak "params num must be 3" unless @_ == 3;
+    confset @_;
+}
+
+sub modget {
+    croak "params num must be 3" unless @_ == 2;
+    confget @_;
+}
+
 1;

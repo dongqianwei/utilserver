@@ -1,7 +1,8 @@
 package Server;
 use Dancer;
-use strict;
 use Module::Load::Conditional 'can_load';
+use HTML::Entities;
+use strict;
 
 sub get_mod {
     my $mod = shift;
@@ -10,9 +11,9 @@ sub get_mod {
 
 sub try_load {
     my $module = shift;
-    info "load module: $module";
     $module = get_mod $module;
-    can_load(modules => {$module=>''})
+    info "try load module: $module";
+    can_load(modules => {$module=>0})
 }
 
 get '/app/:module' => sub {
@@ -30,5 +31,12 @@ get '/app/:module' => sub {
 post '/app/:module' => sub {
     my $data = param 'data';
     my $mod = get_mod param 'module';
-    $mod->proc($data);
+    my $result = encode_entities $mod->proc($data);
+    if ($mod->modget('output') eq 'file') {
+        send_file(\$result, filename => 'result.txt');
+    }
+    else {
+        $result;
+    }
+
 };

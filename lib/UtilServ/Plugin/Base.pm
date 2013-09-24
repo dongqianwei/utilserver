@@ -1,6 +1,8 @@
 package UtilServ::Plugin::Base;
 use UtilServ::Config;
+use UtilServ::PageGen;
 use Carp;
+use subs qw[_modpagerender];
 use strict;
 
 =head
@@ -29,17 +31,7 @@ sub proc {
 =cut
 
 sub page {
-    my ($mod) = $_[0] =~ /::([^:]*)$/;
-<<PG;
-<html>
-<body>
-<form method="post" action="/app/$mod">
-<textarea rows="40" cols="140" name="data"></textarea>
-<input type="submit"></input>
-</form>
-</body>
-</html>
-PG
+    _modpagerender @_;
 }
 
 =head
@@ -57,6 +49,20 @@ sub modset {
 sub modget {
     croak "params num must be 3" unless @_ == 2;
     confget @_;
+}
+
+=head
+    method:modpageconf
+    __PACKAGE__->modpageconf();
+=cut
+
+sub modpageconf {
+    pageconf @_;
+}
+
+#render page
+sub _modpagerender {
+    pagerender @_;
 }
 
 1;

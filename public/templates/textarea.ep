@@ -1,5 +1,5 @@
 % my $r = shift;
 % my ($name, $text) = $r =~ /^([^\[]*)(?:\[(.*)\])?$/;
 <div class="row">
-<textarea name="<%=$name%>" class="col-md-8 col-md-offset-2" rows="15"><%= $text||''%></textarea>
+<textarea name="<%=$name%>" class="col-md-8 col-md-offset-2 data_field" placeholder="<%=$name%>" rows="15"><%= $text||''%></textarea>
 </div>

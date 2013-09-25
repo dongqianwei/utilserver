@@ -40,6 +40,8 @@ sub pagerender {
         info "render data: $name";
         $conf->{$name} eq 'text' ?
         $content .= $rd->render_file($base.'textarea.ep', $name) :
+        $conf->{$name} eq 'input' ?
+        $content .= $rd->render_file($base.'input.ep', $name) :
         croak("not yet implemented");
     }
     $rd->render_file($base.'layout.ep', {head=>$_[0],content=>$content});

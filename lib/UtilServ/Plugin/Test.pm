@@ -5,7 +5,7 @@ use strict;
 #set result output as file download
 __PACKAGE__->modset(output => 'file');
 
-__PACKAGE__->modpageconf('data' => 'text',
+__PACKAGE__->modpageconf('userName' => 'input',
                          'content' => 'text');
 
 sub proc {

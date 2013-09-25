@@ -5,8 +5,8 @@ use strict;
 #set result output as file download
 __PACKAGE__->modset(output => 'file');
 
-__PACKAGE__->modpageconf(filename => 'input',
-                         data => 'text');
+__PACKAGE__->modpageconf('data' => 'text',
+                         'content' => 'text');
 
 sub proc {
     my $data = $_[1];

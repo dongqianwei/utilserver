@@ -2,6 +2,8 @@ package UtilServ::PageGen;
 use parent Exporter;
 use Data::Dump qw[dump];
 use Mojo::Template;
+use Carp;
+use Dancer;
 use strict;
 
 our @EXPORT = qw[pageconf pagerender];
@@ -11,6 +13,8 @@ our @EXPORT = qw[pageconf pagerender];
 #page configuation storage
 my %pageConf;
 
+my $base = 'public/templates/';
+
 my $rd = Mojo::Template->new;
 
 =head
@@ -18,10 +22,10 @@ my $rd = Mojo::Template->new;
     method: pageconf
     config module page,
 
-    pageconf __PACKAGE__, name => 'input|str[dongqianwei]',
-                          age  => 'age|num[23]',
-                          intro => 'text|[]',
-                          sex   => 'checkbox|[male,female]';
+    pageconf __PACKAGE__, name[dongqianwei] => 'input',
+                          age[23]  => 'age',
+                          intro => 'text',
+                          sex[male,female]   => 'checkbox';
 =cut
 
 sub pageconf {
@@ -31,10 +35,13 @@ sub pageconf {
 
 sub pagerender {
     my $conf = $pageConf{$_[0]} || {data => 'text'};
-    print dump($conf);
+    my $content;
+    for my $name (keys %{$conf}) {
+        info "render data: $name";
+        $conf->{$name} eq 'text' ?
+        $content .= $rd->render_file($base.'textarea.ep', $name) :
+        croak("not yet implemented");
+    }
+    $rd->render_file($base.'layout.ep', {head=>$_[0],content=>$content});
 }
 1;
-
-__DATA__
-@@ layout.html.ep
-

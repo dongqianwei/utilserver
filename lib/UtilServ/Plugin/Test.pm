@@ -10,7 +10,8 @@ __PACKAGE__->modpageconf('userName' => 'input',
 
 sub proc {
     my $data = $_[1];
-    $data = "echo your input data: $data, this is a test page";
+    my ($userName, $content) = @{$data}{'userName', 'content'};
+    "Hello $userName, your message is $content from util: Test";
 };
 
 1;

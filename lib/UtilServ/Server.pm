@@ -1,5 +1,6 @@
 package Server;
 use Dancer;
+use Data::Dump 'dump';
 use Module::Load::Conditional 'can_load';
 use HTML::Entities;
 use strict;
@@ -29,7 +30,8 @@ get '/app/:module' => sub {
 };
 
 post '/app/:module' => sub {
-    my $data = param 'data';
+    my $data = params;
+    info dump $data;
     my $mod = get_mod param 'module';
     my $result = encode_entities $mod->proc($data);
     if ($mod->modget('output') eq 'file') {

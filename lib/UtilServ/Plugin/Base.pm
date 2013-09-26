@@ -57,11 +57,13 @@ sub modget {
 =cut
 
 sub modpageconf {
+    $_[0] =~ s/^.*::([^:]+)$/$1/;
     pageconf @_;
 }
 
 #render page
 sub _modpagerender {
+    $_[0] =~ s/^.*::([^:]+)$/$1/;
     pagerender @_;
 }
 

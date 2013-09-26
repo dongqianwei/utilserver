@@ -4,6 +4,8 @@
         <title>Perl Utils Server</title>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     </head>
     <body>
@@ -11,10 +13,15 @@
             <div class="page-header">
                 <h4>Perl Util  [<%= $r->{head}%>]</h4>
             </div>
+            <form role="form" id="formid" method="post" action="/app/<%=$r->{head}%>">
             %= $r->{content}
+            </form>
             <div>
-                <button class="btn btn-success col-md-2 col-md-offset-5">Submit</button>
+                <button id="butid" class="btn btn-success col-md-2 col-md-offset-5">Submit</button>
             </div>
         </div>
+        <script>
+            $("#butid").click(function(){$("#formid").submit()});
+        </script>
     </body>
 </html>

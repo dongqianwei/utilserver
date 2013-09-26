@@ -1,6 +1,7 @@
 use Mojo::Template;
 use Getopt::Long;
 use strict;
+use utf8;
 
 my ($mod, @fields);
 
@@ -12,7 +13,7 @@ my $help = <<H;
     sample:
         perl modgen --name PluginName --fields field1 field2 field3
 
-°´ÈÎÒâ¼üÍË³ö¡£¡£¡£
+æŒ‰ä»»æ„é”®é€€å‡ºã€‚ã€‚ã€‚
 H
 
 do { print $help; <>; exit } unless defined $mod;

@@ -67,4 +67,9 @@ sub _modpagerender {
     pagerender @_;
 }
 
+sub render_result {
+    $_[0] =~ s/^.*::([^:]+)$/$1/;
+    page_render_result @_;
+}
+
 1;

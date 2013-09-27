@@ -33,8 +33,10 @@ __PACKAGE__->modpageconf(
 % }
             );
 sub proc {
+    % if (@fields) {
     my $data = $_[1];
     my (<%=join ",", map {'$'.$_} @fields%>) = @{$data}{<%=join ",", map {"'$_'"} @fields%>};
+    % }
     "";
 };
 T

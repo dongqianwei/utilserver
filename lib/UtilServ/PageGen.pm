@@ -6,7 +6,7 @@ use Carp;
 use Dancer;
 use strict;
 
-our @EXPORT = qw[pageconf pagerender];
+our @EXPORT = qw[pageconf pagerender page_render_result];
 
 #generate page by module settings
 
@@ -34,7 +34,7 @@ sub pageconf {
 }
 
 sub pagerender {
-    my $conf = $pageConf{$_[0]} || {data => 'text'};
+    my $conf = $pageConf{$_[0]};
     my $content;
     for my $name (keys %{$conf}) {
         info "render data: $name";
@@ -46,4 +46,10 @@ sub pagerender {
     }
     $rd->render_file($base.'layout.ep', {head=>$_[0],content=>$content});
 }
+
+sub page_render_result {
+    my ($mod, $content) = @_;
+    $rd->render_file($base.'result.ep', {mod => $mod, content => $content});
+}
+
 1;

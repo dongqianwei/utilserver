@@ -5,7 +5,6 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
         <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     </head>
     <body>
@@ -13,8 +12,8 @@
             <div class="page-header">
                 <h4>Perl Util  [<%= $r->{head}%>]</h4>
             </div>
-            <form role="form" id="formid" method="post" action="/app/<%=$r->{head}%>">
-            %= $r->{content}
+            <form role="form" id="formid" target="_blank" method="post" action="/app/<%=$r->{head}%>">
+            %= $r->{content} || ''
             </form>
             <div>
                 <button id="butid" class="btn btn-success col-md-2 col-md-offset-5">Submit</button>

@@ -1,0 +1,20 @@
+% my $r = shift;
+<html>
+    <head>
+        <title>Perl Util [<%=$r->{mod}%>] Result</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="panel panel-info">
+              <div class="panel-heading">Util process data and generate following output:</div>
+              <div class="panel-body">
+                %= $r->{content} || ''
+              </div>
+            </div>
+        </div>
+    </body>
+</html>

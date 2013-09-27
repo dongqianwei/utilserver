@@ -20,7 +20,7 @@ sub try_load {
 get '/app/:module' => sub {
     my $module = param 'module';
     try_load $module or
-    return "$module can't be loaded";
+    return "$module can't be loaded -- $@ --";
 
     my $mod = get_mod $module;
     return "$module did not inherate Plugin::Base!"
@@ -38,7 +38,6 @@ post '/app/:module' => sub {
         send_file(\$result, filename => 'result.txt');
     }
     else {
-        $result;
+        $mod->render_result($result);
     }
-
 };

@@ -1,0 +1,24 @@
+% my @plugins = @_;
+<html>
+    <head>
+        <title>Perl Util Server</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <table class="table">
+                <tbody>
+                % for (@plugins) {
+                <tr>
+                    <td><%=$_%></td>
+                    <td><a href="/app/<%=$_%>">link</a></td>
+                </tr>
+                % }
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

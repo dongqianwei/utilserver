@@ -4,6 +4,7 @@ use Data::Dump qw[dump];
 use Mojo::Template;
 use Carp;
 use Dancer;
+use Module::Find;
 use strict;
 
 our @EXPORT = qw[pageconf pagerender page_render_result];
@@ -23,9 +24,9 @@ my $rd = Mojo::Template->new;
     config module page,
 
     pageconf __PACKAGE__, name[dongqianwei] => 'input',
-                          age[23]  => 'age',
+                          age[23]  => 'input',
                           intro => 'text',
-                          sex[male,female]   => 'checkbox';
+                          sex[male,female]   => 'select';
 =cut
 
 sub pageconf {
@@ -42,6 +43,8 @@ sub pagerender {
         $content .= $rd->render_file($base.'textarea.ep', $name) :
         $conf->{$name} eq 'input' ?
         $content .= $rd->render_file($base.'input.ep', $name) :
+        $conf->{$name} eq 'select' ?
+        $content .= $rd->render_file($base.'select.ep', $name) :
         croak("not yet implemented");
     }
     $rd->render_file($base.'layout.ep', {head=>$_[0],content=>$content});
@@ -50,6 +53,11 @@ sub pagerender {
 sub page_render_result {
     my ($mod, $content) = @_;
     $rd->render_file($base.'result.ep', {mod => $mod, content => $content});
+}
+
+sub sitemap {
+    my @plugins = grep {$_ ne 'Base'} map {s/^.*:([^:]+)$/$1/r} findsubmod UtilServ::plugin;
+    $rd->render_file($base.'sitemap.ep', @plugins);
 }
 
 1;

@@ -3,6 +3,7 @@ use Dancer;
 use Data::Dump 'dump';
 use Module::Load::Conditional 'can_load';
 use HTML::Entities;
+use UtilServ::PageGen;
 use strict;
 
 sub get_mod {
@@ -16,6 +17,10 @@ sub try_load {
     info "try load module: $module";
     can_load(modules => {$module=>0})
 }
+
+get '/' => sub {
+    UtilServ::PageGen::sitemap;
+};
 
 get '/app/:module' => sub {
     my $module = param 'module';

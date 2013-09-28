@@ -1,0 +1,11 @@
+% my $r = shift;
+% my ($name, $items) = $r =~ /^([^\[]*)(?:\[(.*)\])?$/;
+% my @items = split ',', $items;
+<div class="row">
+  <label class="col-md-offset-2" for="<%=$name%>id"><%=$name%></label>
+  <select id="<%=$name%>id" name="<%=$name%>">
+    % for (@items) {
+    <option value ="<%=$_%>"><%=$_%></option>
+    % }
+  </select>
+</div>

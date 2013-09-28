@@ -6,12 +6,13 @@ use strict;
 __PACKAGE__->modset(output => 'file');
 
 __PACKAGE__->modpageconf('userName' => 'input',
-                         'content' => 'text');
+                         'content' => 'text',
+                         'sex[male,female]' => 'select');
 
 sub proc {
     my $data = $_[1];
-    my ($userName, $content) = @{$data}{'userName', 'content'};
-    "Hello $userName, your message is $content from util: Test";
+    my ($userName, $content, $sex) = @{$data}{'userName', 'content', 'sex'};
+    "Hello ". ($sex eq 'male' ? 'Mr' : 'Mis') ." $userName, your message is $content from util: Test";
 };
 
 1;
